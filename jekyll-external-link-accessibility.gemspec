@@ -8,17 +8,15 @@ Gem::Specification.new do |spec|
   spec.authors = ["Kudakwashe Siziva"]
   spec.email = ["kudakwashe@ombulabs.com"]
 
-  spec.summary = "Write a short summary, because RubyGems requires one."
-  spec.description = "Write a longer description or delete this line."
-  spec.homepage = "https://example.com"
+  spec.summary = "A simple gem to add accessibility to external links in blog posts"
+  spec.description = "Knows how to target external `a` tags and accessibility attributes"
+  spec.homepage = " https://github.com/fastruby/jekyll-external-link-accessibility"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.7.2"
 
-  spec.metadata["allowed_push_host"] = "Set to your gem server 'https://example.com'"
-
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://example.com"
-  spec.metadata["changelog_uri"] = "https://example.com"
+  spec.metadata["source_code_uri"] = " https://github.com/fastruby/jekyll-external-link-accessibility"
+  spec.metadata["changelog_uri"] = " https://github.com/fastruby/jekyll-external-link-accessibility"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
