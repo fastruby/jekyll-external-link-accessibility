@@ -10,13 +10,13 @@ Gem::Specification.new do |spec|
 
   spec.summary = "A simple gem to add accessibility to external links in blog posts"
   spec.description = "Knows how to target external `a` tags and accessibility attributes"
-  spec.homepage = " https://github.com/fastruby/jekyll-external-link-accessibility"
+  spec.homepage = "https://github.com/fastruby/jekyll-external-link-accessibility"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.7.2"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = " https://github.com/fastruby/jekyll-external-link-accessibility"
-  spec.metadata["changelog_uri"] = " https://github.com/fastruby/jekyll-external-link-accessibility"
+  spec.metadata["source_code_uri"] = "https://github.com/fastruby/jekyll-external-link-accessibility"
+  spec.metadata["changelog_uri"] = "https://github.com/fastruby/jekyll-external-link-accessibility"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
