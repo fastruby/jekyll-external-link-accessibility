@@ -1,33 +1,39 @@
-# Jekyll::External::Link::Accessibility
+# Jekyll External Link Accessibility
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/jekyll/external/link/accessibility`. To experiment with that code, run `bin/console` for an interactive prompt.
+This plugin adds `rel`, `title`, `new tab icon` and `target` to all external links in your blog post.
 
-TODO: Delete this and the text above, and describe your gem
+## Setup
 
-## Installation
-
-Install the gem and add to the application's Gemfile by executing:
-
-    $ bundle add jekyll-external-link-accessibility
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-    $ gem install jekyll-external-link-accessibility
+1. Add the gem to your `Gemfile`:
+    ```ruby
+    gem 'jekyll-external-link-accessibility', github: 'fastruby/jekyll-external-link-accessibility'
+    ```
+2. Run `bundle install` to install the gem
+3. Add the following to your `_config.yml`:
+    ```yaml
+    plugins:
+      - jekyll-external-link-accessibility
+    ```
 
 ## Usage
 
-TODO: Write usage instructions here
+### Configuration
 
-## Development
+You can override the default configuration by adding the following section to your Jekyll site's `_config.yml`:
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```yaml
+external_links:
+  rel: external nofollow noopener noreferrer
+  target: _blank
+  title: Opens a new window
+  exclude:
+    - https://www.facebook.com/sharer/.+
+    - http://twitter.com/share?.+
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/jekyll-external-link-accessibility.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+#### Default Configuration
+| Key | Default Value | Description |
+| ---------------------------- | ---------------------------- | -------------------------------------------------- |
+| `external_links.rel`     | `external nofollow noopener noreferrer` | The `rel` attribute to add to external links.      |
+| `external_links.target`  | `_blank`                     | The `target` attribute to add to external links.   |
+| `external_links.exclude` | `[]`                         | A list of URLs to exclude from processing.         |
