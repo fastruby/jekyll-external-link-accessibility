@@ -23,6 +23,6 @@ Gem::Specification.new do |spec|
   spec.files = Dir["{lib}/**/*", "MIT-LICENSE", "README.md"]
   spec.require_paths = ['lib']
 
-  spec.add_dependency "jekyll", "~> 4.0.1"
+  spec.add_dependency "jekyll", '~> 4.0', '>= 4.0.1'
   spec.add_runtime_dependency 'nokogiri', '~> 1.8', '>= 1.8.5'
 end
