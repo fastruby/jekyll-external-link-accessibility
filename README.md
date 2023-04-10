@@ -16,7 +16,7 @@ This plugin adds `rel`, `title`, `new tab icon` and `target` to all external lin
     ```
 
 ## Usage
-You can skip the check on some links, you need to add `data-no-external="true"` to the link.
+The plugin automatically edits all links on all posts. You can however skip the check on some links, by adding `<a href="...." data-no-external="true">...</a>` to the link.
 
 ### Configuration
 
