@@ -16,6 +16,7 @@ This plugin adds `rel`, `title`, `new tab icon` and `target` to all external lin
     ```
 
 ## Usage
+You can skip the check on some links, you need to add `data-no-external="true"` to the link.
 
 ### Configuration
 
@@ -26,9 +27,6 @@ external_links:
   rel: external nofollow noopener noreferrer
   target: _blank
   title: Opens a new window
-  exclude:
-    - https://www.facebook.com/sharer/.+
-    - http://twitter.com/share?.+
 ```
 
 #### Default Configuration
@@ -36,4 +34,3 @@ external_links:
 | ---------------------------- | ---------------------------- | -------------------------------------------------- |
 | `external_links.rel`     | `external nofollow noopener noreferrer` | The `rel` attribute to add to external links.      |
 | `external_links.target`  | `_blank`                     | The `target` attribute to add to external links.   |
-| `external_links.exclude` | `[]`                         | A list of URLs to exclude from processing.         |

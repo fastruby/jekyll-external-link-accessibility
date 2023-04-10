@@ -6,9 +6,8 @@ module Jekyll
     def self.modify_links(page)
       config = page.site.config
       doc = Nokogiri::HTML.fragment(page.output)
-      doc.css('a').each do |a|
-        next if a['href'].nil? || a['href'].empty? || a['href'] == '#' || excludes_external_link?(config: config, url: a['href'])
-        next if excludes_external_link?(config: config, url: a['href'])
+      doc.css('.post-content a').each do |a|
+        next if a['href'].nil? || a['href'].empty? || a['href'].start_with?('#') || a['data-no-external'] == 'true'
 
         if a['href'].start_with?('http')
           a['rel'] = external_link_rel(config: config) unless a['rel']
@@ -31,11 +30,6 @@ module Jekyll
       page.output = doc.to_html
     end
 
-    def self.excludes_external_link?(config:, url:)
-      excludes = (config.dig('external_links', 'exclude') || [])
-      excludes.any? { |exclude| Regexp.new("^#{exclude}$").match? url }
-    end
-
     def self.external_link_rel(config:)
       config.dig('external_links', 'rel') || 'external nofollow noopener noreferrer'
     end
@@ -48,7 +42,6 @@ module Jekyll
       config.dig('external_links', 'title') || 'Opens a new window'
     end
 
-    private_class_method :excludes_external_link?
     private_class_method :external_link_rel
     private_class_method :external_link_target
     private_class_method :external_link_title
