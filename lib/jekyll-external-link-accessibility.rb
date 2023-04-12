@@ -9,7 +9,7 @@ module Jekyll
       doc.css('.post-content a').each do |a|
         next if a['href'].nil? || a['href'].empty? || a['href'].start_with?('#') || a['data-no-external'] == 'true'
 
-        if a['href'].start_with?('http')
+        if a['href'].start_with?('http') || a['href'].start_with?('/')
           a['rel'] = external_link_rel(config: config) unless a['rel']
           a['target'] = external_link_target(config: config) unless a['target']
           a['title'] = external_link_title(config: config) unless a['title']
