@@ -5,7 +5,7 @@ module Jekyll
   class ExternalLinkAccessibility
     def self.modify_links(page)
       config = page.site.config
-      doc = Nokogiri::HTML.fragment(page.output)
+      doc = Nokogiri::HTML5(page.output)
       doc.css('.post-content a').each do |a|
         next if a['href'].nil? || a['href'].empty? || a['href'].start_with?('#') || a['data-no-external'] == 'true'
 
