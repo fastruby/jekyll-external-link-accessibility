@@ -41,3 +41,4 @@ Next to each external link is an icon for external links with a `icon-external-l
 | ---------------------------- | ---------------------------- | -------------------------------------------------- |
 | `external_links.rel`     | `external nofollow noopener noreferrer` | The `rel` attribute to add to external links.      |
 | `external_links.target`  | `_blank`                     | The `target` attribute to add to external links.   |
+| `external_links.title`  | `Opens a new window`                     | The `title` attribute to add title to links.   |
