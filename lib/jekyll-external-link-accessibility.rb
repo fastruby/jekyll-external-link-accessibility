@@ -6,7 +6,7 @@ module Jekyll
     def self.modify_links(page)
       config = page.site.config
       doc = Nokogiri::HTML5(page.output)
-      doc.css('.post-content a').each do |a|
+      doc.css('.post-content a, .post-excerpt a').each do |a|
         next if a['href'].nil? || a['href'].empty? || a['href'].start_with?('#') || a['data-no-external'] == 'true'
 
         if a['href'].start_with?('http') || a['href'].start_with?('/')
