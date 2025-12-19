@@ -6,6 +6,6 @@ Jekyll::Hooks.register :posts, :post_render do |page|
 end
 
 Jekyll::Hooks.register :pages, :post_render do |page|
-  next if page.extname == '.scss' || page.extname == '.json'
+  next if %w[.scss .json .xml].include?(page.extname)
   Jekyll::ExternalLinkAccessibility.modify_links(page)
 end
