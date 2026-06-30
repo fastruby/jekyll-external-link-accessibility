@@ -1,15 +1,19 @@
 require 'jekyll-external-link-accessibility/hooks'
 require 'nokogiri'
+require 'uri'
 
 module Jekyll
   class ExternalLinkAccessibility
+    EXTERNAL_SCHEMES = %w[http:// https:// //].freeze
+
     def self.modify_links(page)
       config = page.site.config
+      site_host = host_for(config['url'])
       doc = Nokogiri::HTML5(page.output)
       doc.css('.post-content a, .post-excerpt a').each do |a|
         next if a['href'].nil? || a['href'].empty? || a['href'].start_with?('#') || a['data-no-external'] == 'true'
 
-        if a['href'].start_with?('http') || a['href'].start_with?('/')
+        if external_link?(a['href'], site_host)
           a['rel'] = external_link_rel(config: config) unless a['rel']
           a['target'] = external_link_target(config: config) unless a['target']
           a['title'] = external_link_title(config: config) unless a['title']
@@ -28,6 +32,26 @@ module Jekyll
         end
       end
       page.output = doc.to_html
+    end
+
+    # A link is external only when it points to a different host than the site.
+    # Relative links ("/blog/...") and absolute links to our own domain are internal,
+    # so they keep their link equity and stay in the same tab.
+    def self.external_link?(href, site_host)
+      return false unless href.start_with?(*EXTERNAL_SCHEMES)
+
+      link_host = host_for(href)
+      return true if link_host.nil?
+
+      link_host != site_host
+    end
+
+    # Returns the host without a leading "www." so www and non-www match.
+    def self.host_for(url)
+      host = URI.parse(url.to_s).host
+      host&.downcase&.sub(/\Awww\./, '')
+    rescue URI::InvalidURIError
+      nil
     end
 
     def self.external_link_rel(config:)

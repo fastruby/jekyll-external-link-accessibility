@@ -16,7 +16,11 @@ This plugin adds `rel`, `title`, `new tab icon` and `target` to all external lin
     ```
 
 ## Usage
-The plugin automatically edits all links on all posts. You can however skip the check on some links, by adding the `data-no-external` attribute and setting it to `true`, e.g `<a href="...." data-no-external="true">...</a>` to the link.
+The plugin automatically edits external links on all posts. A link is considered external only when it points to a host other than your site's `url` (set in `_config.yml`).
+
+- Relative links (`/blog/...`) and absolute links to your own domain are left untouched, so they keep their link equity and open in the same tab.
+- The `www.` prefix is ignored when comparing hosts.
+- Skip a specific link by adding `data-no-external="true"`, e.g. `<a href="...." data-no-external="true">...</a>`.
 
 ### Configuration
 You can override the default configuration by adding the following section to your Jekyll site's `_config.yml`:
