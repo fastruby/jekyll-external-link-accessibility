@@ -30,7 +30,7 @@ module Jekyll
           </span>"
         )
 
-        # For external links, add rel="external nofollow noopener noreferrer" and an icon.
+        # For external links, add the nofollow rel and the external-link icon.
         if external_link?(a['href'], site_host)
           a['rel'] = external_link_rel(config: config) unless a['rel']
           a.add_child(" <i class='icon-external-link' aria-hidden='true'></i>")
@@ -41,7 +41,7 @@ module Jekyll
 
     # A link is external only when it points to a different host than the site.
     # Relative links ("/blog/...") and absolute links to our own domain are internal,
-    # so they keep their link equity and stay in the same tab.
+    # so they keep their link equity (no nofollow).
     def self.external_link?(href, site_host)
       return false unless href.start_with?(*EXTERNAL_SCHEMES)
 
@@ -51,7 +51,8 @@ module Jekyll
       link_host != site_host
     end
 
-    # Returns the host without a leading "www." so www and non-www match.
+    # Returns the lowercased host without a leading "www." so hosts match
+    # regardless of case or www prefix.
     def self.host_for(url)
       host = URI.parse(url.to_s).host
       host&.downcase&.sub(/\Awww\./, '')
