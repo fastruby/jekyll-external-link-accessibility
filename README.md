@@ -1,6 +1,6 @@
 # Jekyll External Link Accessibility
 
-This plugin adds `rel`, `title`, `new tab icon` and `target` to all external links in your blog post.
+This plugin makes every link in your blog posts open in a new tab accessibly (`target`, `title`, a new-tab icon, and a screen-reader note), and adds `rel="nofollow"` to external links.
 
 ## Setup
 
@@ -16,7 +16,10 @@ This plugin adds `rel`, `title`, `new tab icon` and `target` to all external lin
     ```
 
 ## Usage
-The plugin automatically edits all links on all posts. You can however skip the check on some links, by adding the `data-no-external` attribute and setting it to `true`, e.g `<a href="...." data-no-external="true">...</a>` to the link.
+The plugin edits every link in a post, internal and external:
+
+- All links open in a new tab so readers don't lose their place, with a `title`, a new-tab icon, and a screen-reader-only "opens a new window" note. Skip a specific link by adding `data-no-external="true"`, e.g. `<a href="...." data-no-external="true">...</a>`.
+- External links (pointing to a host other than your site's `url` in `_config.yml`) also get a `rel` attribute (`external nofollow noopener noreferrer` by default, see Configuration). The `nofollow` keeps them from passing your link equity off-site, so internal links are left without a `rel`. The `www.` prefix and host casing are ignored when comparing hosts.
 
 ### Configuration
 You can override the default configuration by adding the following section to your Jekyll site's `_config.yml`:
@@ -29,7 +32,7 @@ external_links:
 ```
 
 ### Styling
-Next to each external link is an icon for external links with a `icon-external-link` class name. You need to have the styles in your project. For example, we use icomoon for icons:
+Next to each link is a new-tab icon with a `icon-external-link` class name. You need to have the styles in your project. For example, we use icomoon for icons:
 
 ```css
 .icon-external-link:before {
