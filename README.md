@@ -6,7 +6,7 @@ This plugin makes every link in your blog posts open in a new tab accessibly (`t
 
 1. Add the gem to your `Gemfile`:
     ```ruby
-    gem 'jekyll-external-link-accessibility', github: 'fastruby/jekyll-external-link-accessibility'
+    gem 'jekyll-external-link-accessibility'
     ```
 2. Run `bundle install` to install the gem
 3. Add the following to your `_config.yml`:
@@ -45,3 +45,26 @@ Next to each link is a new-tab icon with a `icon-external-link` class name. You 
 | `external_links.rel`     | `external nofollow noopener noreferrer` | The `rel` attribute to add to external links.      |
 | `external_links.target`  | `_blank`                     | The `target` attribute to add to external links.   |
 | `external_links.title`  | `Opens a new window`                     | The `title` attribute to add title to links.   |
+
+## Steps to release a new version
+
+We follow [Semantic Versioning](https://semver.org/): bump MAJOR for incompatible changes, MINOR for backwards-compatible features, and PATCH for backwards-compatible bug fixes.
+
+1. Update the version in `lib/jekyll-external-link-accessibility/version.rb`
+2. Update `CHANGELOG.md`: move the `main (unreleased)` entries under a new `vX.Y.Z / YYYY-MM-DD` header
+3. Push a `release/vX.Y.Z` branch with those changes
+4. Open a pull request titled "Release vX.Y.Z" and merge it to `main`
+5. Tag the release and push the tag:
+    ```bash
+    git checkout main && git pull
+    git tag vX.Y.Z
+    git push --tags
+    ```
+6. Build the gem:
+    ```bash
+    gem build jekyll-external-link-accessibility.gemspec
+    ```
+7. Push it to RubyGems:
+    ```bash
+    gem push jekyll-external-link-accessibility-X.Y.Z.gem
+    ```
