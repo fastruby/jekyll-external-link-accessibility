@@ -1,6 +1,6 @@
 # main [(unreleased)](https://github.com/fastruby/jekyll-external-link-accessibility/compare/v0.2.0...main)
 
-- Your changes/patches go here.
+- [CHORE: Add an RSpec test suite and CI matrix running Ruby 2.7 through 4.0](https://github.com/fastruby/jekyll-external-link-accessibility/pull/6)
 
 # v0.2.0 / 2026-07-15 [(commits)](https://github.com/fastruby/jekyll-external-link-accessibility/compare/v0.1.0...v0.2.0)
 
