@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency "jekyll", '~> 4.0', '>= 4.0.1'
-  spec.add_dependency 'nokogiri', '~> 1.8', '>= 1.8.5'
+  spec.add_dependency 'nokogiri', '>= 1.12.0', '< 2.0'
 
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rake', '~> 13.0'
