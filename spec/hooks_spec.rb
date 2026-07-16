@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe 'pages :post_render hook' do
-  # Fires the registered hook for a page with the given extension and reports
-  # whether the rewriter ran.
+  # Fires the registered hook for a page with the given extension.
   def trigger(extname)
     page = fake_page('<html><body></body></html>', 'url' => 'https://example.com')
     page.define_singleton_method(:extname) { extname }
