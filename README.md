@@ -19,7 +19,7 @@ This plugin makes every link in your blog posts open in a new tab accessibly (`t
 The plugin edits every link in a post, internal and external:
 
 - All links open in a new tab so readers don't lose their place, with a `title`, a new-tab icon, and a screen-reader-only "opens a new window" note. Skip a specific link by adding `data-no-external="true"`, e.g. `<a href="...." data-no-external="true">...</a>`.
-- External links (pointing to a host other than your site's `url` in `_config.yml`) also get a `rel` attribute (`external nofollow noopener noreferrer` by default, see Configuration). The `nofollow` keeps them from passing your link equity off-site, so internal links are left without a `rel`. The `www.` prefix and host casing are ignored when comparing hosts.
+- External links (pointing to a host other than your site's `url` in `_config.yml`) also get a `rel` attribute (`external nofollow noopener noreferrer` by default, see Configuration). The `nofollow` keeps them from passing your link equity off-site, so internal links are left without a `rel`. The `www.` prefix and host casing are ignored when comparing hosts, and subdomains of your site's host (e.g. `docs.example.com` when your `url` is `https://example.com`) count as internal.
 
 ### Configuration
 You can override the default configuration by adding the following section to your Jekyll site's `_config.yml`:

@@ -40,13 +40,14 @@ module Jekyll
     end
 
     # A link is external only when it points to a different host than the site.
-    # Relative links ("/blog/...") and absolute links to our own domain are internal,
-    # so they keep their link equity (no nofollow).
+    # Relative links ("/blog/..."), absolute links to our own domain and links to a
+    # subdomain of it are internal, so they keep their link equity (no nofollow).
     def self.external_link?(href, site_host)
       return false unless href.start_with?(*EXTERNAL_SCHEMES)
 
       link_host = host_for(href)
       return true if link_host.nil?
+      return false if site_host && link_host.end_with?(".#{site_host}")
 
       link_host != site_host
     end

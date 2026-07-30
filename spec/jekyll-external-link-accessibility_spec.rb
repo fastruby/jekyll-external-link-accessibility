@@ -43,6 +43,21 @@ RSpec.describe Jekyll::ExternalLinkAccessibility do
       expect(described_class.external_link?('https://www.example.com/blog', site_host)).to be(false)
     end
 
+    it 'is false for a subdomain of the site host' do
+      expect(described_class.external_link?('https://docs.example.com/x', site_host)).to be(false)
+      expect(described_class.external_link?('https://www.docs.example.com/x', site_host)).to be(false)
+      expect(described_class.external_link?('//docs.example.com/x', site_host)).to be(false)
+    end
+
+    it 'is true for hosts that only look like a subdomain' do
+      expect(described_class.external_link?('https://notexample.com', site_host)).to be(true)
+      expect(described_class.external_link?('https://example.github.io', site_host)).to be(true)
+    end
+
+    it 'is true for any host when the site has no url configured' do
+      expect(described_class.external_link?('https://other.com', nil)).to be(true)
+    end
+
     it 'is false for relative and anchor links' do
       expect(described_class.external_link?('/blog/post', site_host)).to be(false)
       expect(described_class.external_link?('#section', site_host)).to be(false)
@@ -86,6 +101,13 @@ RSpec.describe Jekyll::ExternalLinkAccessibility do
 
       expect(external['rel']).to eq('external nofollow noopener noreferrer')
       expect(internal['rel']).to be_nil
+    end
+
+    it 'does not add rel to a subdomain of the site host' do
+      link = rewrite("<a href='https://docs.example.com/x'>x</a>").at_css('a')
+
+      expect(link['rel']).to be_nil
+      expect(link['target']).to eq('_blank')
     end
 
     it 'skips links with no href, empty href, anchors or data-no-external' do
