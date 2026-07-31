@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jekyll-external-link-accessibility (0.2.0)
+    jekyll-external-link-accessibility (0.3.0)
       jekyll (~> 4.0, >= 4.0.1)
       nokogiri (>= 1.12.0, < 2.0)
 
